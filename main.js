@@ -1,16 +1,41 @@
- 
- function tocaSomPom(){
-    document.querySelector('#som_tecla_pom').play();
+const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
+const caixaAlternativas = document.querySelector(".caixa-Alternativas");
+const caixaResultado = document.querySelector(".caixa-resultado");
+const textoResultado = document.querySelector(".texto-resultado");
+
+const perguntas = [
+    {
+        enunciado: "pergunta 1",
+        alternativa:["alternativa 1", "alternativa 2"]
+    },
+    {
+        enunciado: "pergunta 2",
+        alternativa:["alternativa 1", "alternativa 2"]
+    },
+    {
+        enunciado: "pergunta 3",
+        alternativa:["alternativa 1", "alternativa 2"]
+    }
+]
+
+let atual = 0;
+let perguntaAtual;
+
+function mostraPergunta(){
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent="";
+    mostraAlternativas();
 }
-const listaDeTeclas = document.querySelectorAll('.tecla');
 
-let contador = 0;
-
-while(contador <listaDeTeclas.length){
-
-    listaDeTeclas[0].onclick = tocaSomPom;
-    contador = contador + 1;
-
-    console.log(contador)
- 
+function mostraAlternativas(){
+    for( const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button"); 
+        botaoAlternativas.textContent = alternativa; 
+        caixaAlternativas.appendChild(botaoAlternativas);
+    }
 }
+
+mostraPergunta();
+
